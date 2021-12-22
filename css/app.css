@@ -1,0 +1,54 @@
+﻿html, body {
+	font-family: Lato, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	width: 100%;
+	height: 100%;
+}
+
+
+/*------*/
+
+
+.fullscreen {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.app {
+	background-color: gray;
+	height: 100%;
+}
+
+.app .row {
+	height: 100%;
+}
+
+.app .row .left {
+	height: 100%;
+}
+
+.app .row .right {
+	height: 100%;
+}
+
+.panel {
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+} 
+
+.panel.first {
+	height: 40%;
+	background-color: #a99; 
+}
+
+.panel.second {
+	height: 60%;
+	background-color: #99a;
+}
+
+.panel.third {
+	height: 100%;
+	background-color: #9a9;
+}
