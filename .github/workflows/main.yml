@@ -1,8 +1,7 @@
 name: Build and Deploy
 on: 
     push:
-        branches: 
-        - main
+        branches: [ main ]
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest    
@@ -11,9 +10,9 @@ jobs:
         - name: Setup .NET Core
           uses: actions/setup-dotnet@v1
           with:
-            dotnet-version: 3.1
+            dotnet-version: '6.0.x'
         - name: Publish with dotnet
-          run: dotnet publish --configuration Release --output build
+          run: dotnet publish -c Release -o build --nologo
         - name: Deploy to Github Pages
           uses: connectuum/poemdown@main
           with:
