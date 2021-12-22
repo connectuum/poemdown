@@ -17,7 +17,7 @@ jobs:
           uses: connectuum/poemdown@main
           with:
             ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-            BASE_BRANCH: master
+            BASE_BRANCH: main
             BRANCH: gh-pages
             FOLDER: build/wwwroot
             CLEAN: true
