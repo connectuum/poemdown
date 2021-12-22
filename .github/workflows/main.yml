@@ -20,4 +20,3 @@ jobs:
             BASE_BRANCH: main
             BRANCH: gh-pages
             FOLDER: build/wwwroot
-            CLEAN: true
