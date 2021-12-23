@@ -8,6 +8,9 @@
 
 html, body, textarea {
 	color: #bbb;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
 }
 
 
@@ -50,7 +53,6 @@ html, body, textarea {
 }
 
 .editor textarea {
-	position: absolute; /* don't consume vertical space */
 	width: 100%;
 	height: 100%;
 	border: 0;
@@ -58,6 +60,7 @@ html, body, textarea {
 	resize: none;
 	color: #fff3;
 	background-color: transparent;
+	outline: 0 !important;
 }
 
 .editor textarea:focus {
@@ -65,10 +68,14 @@ html, body, textarea {
 }
 
 .editor .overlay {
+	position: relative;
 	width: 100%;
 	height: 100%;
+	top: -100%;
+	margin-top: -1px;
 	padding: 0;
 	pointer-events: none;
+	/* TODO: the word-wrap behavior differs from the textarea */
 }
 
 .preview {
