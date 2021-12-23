@@ -3,7 +3,7 @@
 	font-size: 14px;
 	width: 100%;
 	height: 100%;
-	background-color: #000;
+	background-color: #111;
 }
 
 html, body, textarea {
@@ -37,7 +37,10 @@ html, body, textarea {
 .app .row {
 	padding-top: 1em;
 	padding-bottom: 1em;
-	background-color: rgba(255, 255, 255, 0.08);
+}
+
+.editor {
+	font-family: Monaco, Lucida Console, monospace;
 }
 
 .editor,
@@ -47,11 +50,13 @@ html, body, textarea {
 }
 
 .editor textarea {
-	font-family: Monaco, Lucida Console, monospace;
+	position: absolute; /* don't consume vertical space */
 	width: 100%;
 	height: 100%;
 	border: 0;
+	padding: 0;
 	resize: none;
+	color: #fff3;
 	background-color: transparent;
 }
 
@@ -59,8 +64,15 @@ html, body, textarea {
 	outline: 0 !important;
 }
 
+.editor .overlay {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	pointer-events: none;
+}
+
 .preview {
-	border-left: 1px dotted #000;
+	border-left: 2px dotted #333;
 }
 
 .preview canvas {
