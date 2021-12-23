@@ -1,13 +1,17 @@
 ﻿html, body {
 	font-family: Lato, Helvetica, Arial, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	width: 100%;
 	height: 100%;
+	background-color: #000;
+}
+
+html, body, textarea {
+	color: #bbb;
 }
 
 
-/*------*/
-
+/* main */
 
 .fullscreen {
 	position: absolute;
@@ -16,7 +20,6 @@
 }
 
 .app {
-	background-color: gray;
 	height: 100%;
 }
 
@@ -24,31 +27,43 @@
 	height: 100%;
 }
 
-.app .row .left {
-	height: 100%;
+
+/* index */
+
+.app {
+	padding: 1em;
 }
 
-.app .row .right {
-	height: 100%;
+.app .row {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: rgba(255, 255, 255, 0.08);
 }
 
-.panel {
+.editor,
+.preview {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.editor textarea {
+	font-family: Monaco, Lucida Console, monospace;
 	width: 100%;
 	height: 100%;
-	padding: 1em;
-} 
-
-.panel.first {
-	height: 40%;
-	background-color: #a99; 
+	border: 0;
+	resize: none;
+	background-color: transparent;
 }
 
-.panel.second {
-	height: 60%;
-	background-color: #99a;
+.editor textarea:focus {
+	outline: 0 !important;
 }
 
-.panel.third {
+.preview {
+	border-left: 1px dotted #000;
+}
+
+.preview canvas {
+	width: 100%;
 	height: 100%;
-	background-color: #9a9;
 }
