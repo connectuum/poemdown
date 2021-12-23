@@ -1,5 +1,8 @@
 ﻿
 function setHtml(selector, html) {
-	//console.log("setHtml", selector, html); //, $(selector));
 	$(selector).html(html);
+}
+
+function setEditorOverlayHtml(html) {
+	setHtml(".editor .overlay", html);
 }
