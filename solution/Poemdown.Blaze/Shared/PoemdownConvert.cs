@@ -11,26 +11,41 @@ public static class PoemdownConvert {
 		var html = new StringBuilder();
 		int hueSpeed = 3;
 		int displayCharCount = 0;
+		int lineCharCount = 0;
+		const int tabSize = 4;
 
 		foreach ( char c in poemdown ) {
-			//Console.WriteLine($"TEST {(int)c} '{c}'"); //{(int)'\n'} {(int)'\r'}");
-
 			switch ( c ) {
 				case '\n':
 					html.Append("<br/>");
+					lineCharCount = 0;
 					continue;
+
 				case '\r':
 					continue;
+
 				case ' ':
 					html.Append("&nbsp;");
+					lineCharCount++;
 					continue;
+
 				case '\t':
-					html.Append("&nbsp;&nbsp;&nbsp;&nbsp;");
+					//test line:	1234	567	89	1	2
+					int spaceCount = tabSize-lineCharCount%tabSize;
+					spaceCount = (spaceCount == 0 ? tabSize : spaceCount);
+
+					for ( int i = 0 ; i < spaceCount ; i++ ) {
+						html.Append("&nbsp;");
+						lineCharCount++;
+					}
+
 					continue;
 			}
 
 			int hue = hueSpeed*displayCharCount;
+
 			displayCharCount++;
+			lineCharCount++;
 
 			html.Append("<span style='color:hsl(");
 			html.Append(hue);
@@ -39,7 +54,6 @@ public static class PoemdownConvert {
 			html.Append("</span>");
 		}
 
-		Console.WriteLine($"HTML {html}");
 		return html.ToString();
 	}
 

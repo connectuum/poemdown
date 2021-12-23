@@ -72,7 +72,7 @@ html, body, textarea {
 	width: 100%;
 	height: 100%;
 	top: -100%;
-	margin-top: -1px;
+	margin-top: -2px;
 	padding: 0;
 	pointer-events: none;
 	/* TODO: the word-wrap behavior differs from the textarea */

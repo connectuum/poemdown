@@ -6,7 +6,8 @@
 <div class="app container">
 	<div class="row">
 		<div class="editor col-12 col-sm-6">
-			<textarea @oninput="HandleInput" placeholder="begin"></textarea>
+			<textarea @oninput="HandleInput" @onkeydown="HandleKeyDown"
+				placeholder="begin"></textarea>
 			<div class="overlay"></div>
 		</div>
 		<div class="preview col-12 col-sm-6">
@@ -17,9 +18,29 @@
 
 @code {
 
-	private async void HandleInput(ChangeEventArgs args) {
-		string html = (args.Value is string input ? PoemdownConvert.ToHtml(input) : "");
-		await JS.InvokeVoidAsync("setEditorOverlayHtml", html);
+	private string previousInput = "";
+
+	private void HandleKeyDown(KeyboardEventArgs args) {
+		UpdateOverlay();
+	}
+
+	private void HandleInput(ChangeEventArgs args) {
+		UpdateOverlay();
+	}
+
+	private async void UpdateOverlay() {
+		string input = await JS.InvokeAsync<string>("getEditorTextareaValue");
+
+		if ( input == previousInput ) {
+			return;
+		}
+
+		previousInput = input;
+
+		await JS.InvokeVoidAsync(
+			"setEditorOverlayHtml",
+			PoemdownConvert.ToHtml(input)
+		);
 	}
 
 }
