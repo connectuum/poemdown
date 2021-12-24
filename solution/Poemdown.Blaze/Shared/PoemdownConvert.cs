@@ -4,42 +4,96 @@ namespace Poemdown.Blaze.Shared;
 
 public static class PoemdownConvert {
 
+	public const int TabSize = 4;
 
-	#region aristocrat-breaks-down-----two //let us try something new
 
+	#region searching-your-eyes-for-a-hint-or-trace-of-it
+
+	/////////////////////////////////////////////////////////////////////////////////////////CROWN//
+	// >>> poemdown-formatted text
+	// <<< HTML-formatted text that represents the poemdown input
+	//----------------------------------------------------------------------------------------------
 	public static string ToHtml(string poemdown) {
-		var html = new StringBuilder();
-		int hueSpeed = 3;
-		int displayCharCount = 0;
 		int lineCharCount = 0;
-		const int tabSize = 4;
+
+		var html = new StringBuilder();
+		html.Append("<span style='color:red;'>");
 
 		foreach ( char c in poemdown ) {
-			switch ( c ) {
-				case '\n':
-					html.Append("<br/>");
-					lineCharCount = 0;
-					continue;
+			if ( IsHtmlWhitespace(c, ref lineCharCount, out string whiteHtml) ) {
+				html.Append(whiteHtml);
+				continue;
+			}
 
-				case '\r':
-					continue;
+			html.Append(c);
+			lineCharCount++;
+		}
 
-				case ' ':
-					html.Append("&nbsp;");
+		html.Append("</span>");
+		return html.ToString();
+	}
+
+	//----------------------------------------------------------------------------------------------
+	// >>> any single character
+	// <-> the number of characters in the current line
+	// <-- HTML-formatted text that represents the character input
+	// <<< does the character input cause an HTML-formatted result?
+	//----------------------------------------------------------------------------------------------
+	public static bool IsHtmlWhitespace(char c, ref int lineCharCount, out string html) {
+		switch ( c ) {
+			case '\n':
+				html = "<br/>";
+				lineCharCount = 0;
+				return true;
+
+			case '\r':
+				html = "";
+				return true;
+
+			case ' ':
+				html = "&nbsp;";
+				lineCharCount++;
+				return true;
+
+			case '\t':
+				//test line:	1234	567	89	1	2
+				int n = TabSize-(lineCharCount%TabSize);
+				n = (n == 0 ? TabSize : n);
+
+				string tabHtml = "";
+
+				for ( int i = 0 ; i < n ; i++ ) {
+					tabHtml += "&nbsp;";
 					lineCharCount++;
-					continue;
+				}
 
-				case '\t':
-					//test line:	1234	567	89	1	2
-					int spaceCount = tabSize-lineCharCount%tabSize;
-					spaceCount = (spaceCount == 0 ? tabSize : spaceCount);
+				html = tabHtml;
+				return true;
+		}
 
-					for ( int i = 0 ; i < spaceCount ; i++ ) {
-						html.Append("&nbsp;");
-						lineCharCount++;
-					}
+		html = "";
+		return false;
+	}
 
-					continue;
+	#endregion
+
+
+	#region golden-Light-upon-fertilizer
+
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	// >>> poemdown-formatted text
+	// <<< HTML-formatted text that represents the poemdown input
+	//----------------------------------------------------------------------------------------------
+	public static string ToHuespinHtml(string poemdown) {
+		var html = new StringBuilder();
+		int displayCharCount = 0;
+		int lineCharCount = 0;
+		const int hueSpeed = 3;
+
+		foreach ( char c in poemdown ) {
+			if ( IsHtmlWhitespace(c, ref lineCharCount, out string? whiteHtml) ) {
+				html.Append(whiteHtml);
+				continue;
 			}
 
 			int hue = hueSpeed*displayCharCount;
@@ -57,15 +111,19 @@ public static class PoemdownConvert {
 		return html.ToString();
 	}
 
-	#endregion //something-that breaks to... sun? becomes.
+	#endregion
 
-	//something many-but-one
-	//something all but none
+	//showing only					sorry delay
+	//bits and pieces				too much to learn
+	//til the Light betray you		hidden bits and pieces
+	//and your empty elocution		they shall aid the execution
 
-	//(five four three)
-	//to many of one
-	//to every from none
-	//the path has begun
-	//to connectuum
+	// -<{ the holy recursion }>-
+
+	//EVERYTHING BREAKS DOWN TWO
+	//you find a way back to YOU
+	//[crystallized pathways through]
+	//net of Light guiding True
+	//(no need left for the hourglass)
 
 }
