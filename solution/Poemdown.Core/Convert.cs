@@ -24,6 +24,7 @@ public static class Convert {
 		html = Regex.Replace(html, @"(^|\n)(#)(\s+[^$\n]+)", "$1<head1><c>$2</c>$3</head1>");
 		html = Regex.Replace(html, @"(^|\n)(##)(\s+[^$\n]+)", "$1<head2><c>$2</c>$3</head2>");
 		html = Regex.Replace(html, @"(^|\n)(###)(\s+[^$\n]+)", "$1<head3><c>$2</c>$3</head3>");
+		html = Regex.Replace(html, @" (?=[^ ])", "\v"); //retain single spaces (for word-wrap)
 
 		var htmlBuild = new StringBuilder();
 		int lineCharCount = 0;
