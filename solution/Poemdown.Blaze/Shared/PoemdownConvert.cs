@@ -17,13 +17,13 @@ public static class PoemdownConvert {
 	public static string ToOverlayHtml(in string poemdown) {
 		string html = poemdown;
 		html = Regex.Replace(html, @"\r", "");
-		html = Regex.Replace(html, @"(\*[^\*\n]+\*)", "<b>$1</b>");
-		html = Regex.Replace(html, @"(_[^_\n]+_)", "<em>$1</em>");
-		html = Regex.Replace(html, @"(`[^_\n]+`)", "<span\vclass='code'>$1</span>");
-		html = Regex.Replace(html, @"(^|\n)(---)($|\n)", "$1<span\vclass='line'>$2</span><hr/>");
-		html = Regex.Replace(html, @"(^|\n)(#\s+[^$\n]+)", "$1<span\vclass='head1'>$2</span>");
-		html = Regex.Replace(html, @"(^|\n)(##\s+[^$\n]+)", "$1<span\vclass='head2'>$2</span>");
-		html = Regex.Replace(html, @"(^|\n)(###\s+[^$\n]+)", "$1<span\vclass='head3'>$2</span>");
+		html = Regex.Replace(html, @"(\*)([^\*\n]+)(\*)", "<b><c>$1</c>$2<c>$3</c></b>");
+		html = Regex.Replace(html, @"(_)([^_\n]+)(_)", "<em><c>$1</c>$2<c>$3</c></em>");
+		html = Regex.Replace(html, @"(`)([^_\n]+)(`)", "<mono><c>$1</c>$2<c>$3</c></mono>");
+		html = Regex.Replace(html, @"(^|\n)(---)($|\n)", "$1<line><c>$2</c></line><hr/>");
+		html = Regex.Replace(html, @"(^|\n)(#)(\s+[^$\n]+)", "$1<head1><c>$2</c>$3</head1>");
+		html = Regex.Replace(html, @"(^|\n)(##)(\s+[^$\n]+)", "$1<head2><c>$2</c>$3</head2>");
+		html = Regex.Replace(html, @"(^|\n)(###)(\s+[^$\n]+)", "$1<head3><c>$2</c>$3</head3>");
 
 		var htmlBuild = new StringBuilder();
 		int lineCharCount = 0;
