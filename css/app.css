@@ -1,5 +1,5 @@
 ﻿html, body {
-	font-family: Georgia, serif;
+	font-family: "Georgia", serif;
 	font-size: 16px;
 	width: 100%;
 	height: 100%;
@@ -11,6 +11,11 @@ html, body, textarea {
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
+}
+
+.monospace {
+	font-family: "Menlo", "Monaco", "Lucida Console", monospace;
+	font-size: 14px;
 }
 
 
@@ -51,11 +56,6 @@ p.loading {
 	padding-bottom: 1em;
 }
 
-.editor {
-	font-family: Monaco, Lucida Console, monospace;
-	font-size: 14px;
-}
-
 .editor,
 .preview {
 	padding-left: 1em;
@@ -68,9 +68,30 @@ p.loading {
 	border: 0;
 	padding: 0;
 	resize: none;
-	color: #fff3;
+	color: transparent; /*#fff4;*/
+	caret-color: #fff8;
 	background-color: transparent;
 	outline: 0 !important;
+}
+
+textarea::placeholder {
+	color: #fff6;
+	font-style: italic;
+}
+
+::selection {
+	background: #fff4;
+	color: transparent;
+}
+
+::-moz-selection {
+	background: #fff4;
+	color: transparent;
+}
+
+::-webkit-selection {
+	background: #fff4;
+	color: transparent;
 }
 
 .editor textarea:focus {
@@ -79,6 +100,7 @@ p.loading {
 
 .editor .overlay {
 	position: relative;
+	color: #fffa;
 	width: 100%;
 	height: 100%;
 	top: -100%;
@@ -86,6 +108,43 @@ p.loading {
 	padding: 0;
 	pointer-events: none;
 	/* TODO: the word-wrap behavior differs from the textarea */
+}
+
+.editor .overlay b {
+	color: #fffc;
+}
+
+.editor .overlay em {
+	color: #fffc;
+}
+
+.editor .overlay hr {
+	position: relative;
+	color: #fff2;
+	height: 2px;
+	top: -0.8em;
+	margin: 0 0 -2px 0;
+}
+
+.editor .overlay .code {
+	color: #fc8c;
+	background-color: #fc82;
+}
+
+.editor .overlay .head1 {
+	color: #8f3c;
+}
+
+.editor .overlay .head2 {
+	color: #3dfc;
+}
+
+.editor .overlay .head3 {
+	color: #dcfc;
+}
+
+.editor .overlay .line {
+	/*color: #fff;*/
 }
 
 .preview {
