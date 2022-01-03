@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Poemdown.Blaze.Shared;
 
@@ -13,24 +14,31 @@ public static class PoemdownConvert {
 	// >>> poemdown-formatted text
 	// <<< HTML-formatted text that represents the poemdown input
 	//----------------------------------------------------------------------------------------------
-	public static string ToHtml(string poemdown) {
+	public static string ToOverlayHtml(in string poemdown) {
+		string html = poemdown;
+		html = Regex.Replace(html, @"\r", "");
+		html = Regex.Replace(html, @"(\*[^\*\n]+\*)", "<b>$1</b>");
+		html = Regex.Replace(html, @"(_[^_\n]+_)", "<em>$1</em>");
+		html = Regex.Replace(html, @"(`[^_\n]+`)", "<span\vclass='code'>$1</span>");
+		html = Regex.Replace(html, @"(^|\n)(---)($|\n)", "$1<span\vclass='line'>$2</span><hr/>");
+		html = Regex.Replace(html, @"(^|\n)(#\s+[^$\n]+)", "$1<span\vclass='head1'>$2</span>");
+		html = Regex.Replace(html, @"(^|\n)(##\s+[^$\n]+)", "$1<span\vclass='head2'>$2</span>");
+		html = Regex.Replace(html, @"(^|\n)(###\s+[^$\n]+)", "$1<span\vclass='head3'>$2</span>");
+
+		var htmlBuild = new StringBuilder();
 		int lineCharCount = 0;
 
-		var html = new StringBuilder();
-		html.Append("<span style='color:red;'>");
-
-		foreach ( char c in poemdown ) {
+		foreach ( char c in html ) {
 			if ( IsHtmlWhitespace(c, ref lineCharCount, out string whiteHtml) ) {
-				html.Append(whiteHtml);
+				htmlBuild.Append(whiteHtml);
 				continue;
 			}
 
-			html.Append(c);
+			htmlBuild.Append(c);
 			lineCharCount++;
 		}
 
-		html.Append("</span>");
-		return html.ToString();
+		return htmlBuild.ToString();
 	}
 
 	//----------------------------------------------------------------------------------------------
@@ -48,6 +56,10 @@ public static class PoemdownConvert {
 
 			case '\r':
 				html = "";
+				return true;
+
+			case '\v': //special case: repurpose 'vertical-tab' as an escaped 'space'
+				html = " ";
 				return true;
 
 			case ' ':

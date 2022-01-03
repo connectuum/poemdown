@@ -6,9 +6,9 @@
 <div class="app container">
 	<div class="row">
 		<div class="editor col-12 col-sm-6">
-			<textarea @oninput="HandleInput" @onkeydown="HandleKeyDown"
-				placeholder="begin"></textarea>
-			<div class="overlay"></div>
+			<textarea class="monospace" @oninput="HandleInput" @onkeydown="HandleKeyDown"
+				placeholder="just begin."></textarea>
+			<div class="overlay monospace"></div>
 		</div>
 		<div class="preview col-12 col-sm-6">
 			<canvas id="preview"></canvas>
@@ -39,7 +39,7 @@
 
 		await JS.InvokeVoidAsync(
 			"setEditorOverlayHtml",
-			PoemdownConvert.ToHtml(input)
+			PoemdownConvert.ToOverlayHtml(input)
 		);
 	}
 
