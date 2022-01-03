@@ -1,6 +1,4 @@
-﻿using Poemdown.Blaze.Shared;
-
-const string sampleText = @"
+﻿const string sampleText = @"
 does _this_ actually *work*?
 
 ---
@@ -17,7 +15,7 @@ something else
 this is the `testing` code
 ";
 
-string html = PoemdownConvert.ToOverlayHtml(sampleText);
+string html = Poemdown.Core.Convert.ToOverlayHtml(sampleText);
 html = html.Replace("<br/>", "<br/>\n");
 
 Console.WriteLine($"RESULT\n{html}");

@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 @inject IJSRuntime JS
 
 <PageTitle>poemdown</PageTitle>
@@ -39,7 +39,7 @@
 
 		await JS.InvokeVoidAsync(
 			"setEditorOverlayHtml",
-			PoemdownConvert.ToOverlayHtml(input)
+			Core.Convert.ToOverlayHtml(input)
 		);
 	}
 

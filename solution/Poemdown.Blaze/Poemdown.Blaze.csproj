@@ -16,4 +16,8 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Poemdown.Core\Poemdown.Core.csproj" />
+	</ItemGroup>
+
 </Project>
