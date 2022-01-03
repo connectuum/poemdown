@@ -63,12 +63,14 @@ p.loading {
 }
 
 .editor textarea {
+	display: block;
 	width: 100%;
 	height: 100%;
 	border: 0;
 	padding: 0;
 	resize: none;
-	color: transparent; /*#fff4;*/
+	/*color: transparent;*/
+	color: #fff2;
 	caret-color: #fff8;
 	background-color: transparent;
 	outline: 0 !important;
@@ -104,10 +106,9 @@ textarea::placeholder {
 	width: 100%;
 	height: 100%;
 	top: -100%;
-	margin-top: -2px;
 	padding: 0;
 	pointer-events: none;
-	/* TODO: the word-wrap behavior differs from the textarea */
+	overflow-wrap: break-word;
 }
 
 .editor .overlay b {
