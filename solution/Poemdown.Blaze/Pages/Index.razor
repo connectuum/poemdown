@@ -7,7 +7,21 @@
 	<div class="row">
 		<div class="editor col-12 col-sm-6">
 			<textarea class="monospace" @oninput="HandleInput" @onkeydown="HandleKeyDown"
-				placeholder="just begin."></textarea>
+				placeholder="just begin.">
+does _this_ actually *work*?
+
+---
+
+# test single
+more things
+e	v	e		n more
+
+## test double
+something else
+
+### test triple
+this is the `testing` code`
+			</textarea>
 			<div class="overlay monospace"></div>
 		</div>
 		<div class="preview col-12 col-sm-6">
@@ -20,15 +34,25 @@
 
 	private string previousInput = "";
 
-	private void HandleKeyDown(KeyboardEventArgs args) {
-		UpdateOverlay();
+	/*protected override async Task OnInitializedAsync() {
+		await UpdateOverlay(); //too soon; _wait_
+	}*/
+
+	protected override async Task OnAfterRenderAsync(bool isFirstRender) {
+		if ( isFirstRender ) {
+			await UpdateOverlay();
+		}
+}
+	
+	private async void HandleKeyDown(KeyboardEventArgs args) {
+		await UpdateOverlay();
 	}
 
-	private void HandleInput(ChangeEventArgs args) {
-		UpdateOverlay();
+	private async void HandleInput(ChangeEventArgs args) {
+		await UpdateOverlay();
 	}
 
-	private async void UpdateOverlay() {
+	private async Task UpdateOverlay() {
 		string input = await JS.InvokeAsync<string>("getEditorTextareaValue");
 
 		if ( input == previousInput ) {

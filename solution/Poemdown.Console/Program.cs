@@ -1,7 +1,7 @@
-﻿const string sampleText = @"
+const string sampleText = @"
 does _this_ actually *work*?
 
----
+---   
 
 # test single
 more things
@@ -11,7 +11,7 @@ e	v	e		n more
 something else
 
 ### test triple
-
+what about ``` then
 this is the `testing` code
 ";
 
